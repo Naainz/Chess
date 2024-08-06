@@ -1,5 +1,4 @@
 ---
-title: "Chessboard"
 ---
 
 <!DOCTYPE html>
@@ -7,7 +6,7 @@ title: "Chessboard"
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chessboard</title>
+    <title>Responsive Chessboard with Pieces</title>
     <style>
         body {
             display: flex;
@@ -17,16 +16,28 @@ title: "Chessboard"
             margin: 0;
             background-color: #f0f0f0;
         }
+        .chessboard-container {
+            width: 90vmin;
+            height: 90vmin;
+            max-width: 90vmin;
+            max-height: 90vmin;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         .chessboard {
             display: grid;
-            grid-template-columns: repeat(8, 50px);
-            grid-template-rows: repeat(8, 50px);
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            width: 100%;
+            height: 100%;
             border: 2px solid #333;
-			scale: 1.5;
         }
         .chessboard div {
-            width: 50px;
-            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3vmin;
         }
         .chessboard .black {
             background-color: #769656;
@@ -34,16 +45,68 @@ title: "Chessboard"
         .chessboard .white {
             background-color: #eeeed2;
         }
+        .chess-piece {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <div class="chessboard">
-        <!-- Loop to create the chessboard squares -->
-        {Array.from({ length: 8 }).map((_, rowIndex) =>
-            Array.from({ length: 8 }).map((_, colIndex) => (
-                <div class={((rowIndex + colIndex) % 2 === 0) ? 'white' : 'black'}></div>
-            ))
-        )}
+    <div class="chessboard-container">
+        <div class="chessboard" id="chessboard">
+            <!-- Loop to create the chessboard squares -->
+            {Array.from({ length: 8 }).map((_, rowIndex) =>
+                Array.from({ length: 8 }).map((_, colIndex) => (
+                    <div class={`square ${((rowIndex + colIndex) % 2 === 0) ? 'white' : 'black'}`} id={`square-${rowIndex}-${colIndex}`}></div>
+                ))
+            )}
+        </div>
     </div>
+    <script>
+        const initialBoardSetup = [
+            ["r", "n", "b", "q", "k", "b", "n", "r"],
+            ["p", "p", "p", "p", "p", "p", "p", "p"],
+            ["", "", "", "", "", "", "", ""],
+            ["", "", "", "", "", "", "", ""],
+            ["", "", "", "", "", "", "", ""],
+            ["", "", "", "", "", "", "", ""],
+            ["P", "P", "P", "P", "P", "P", "P", "P"],
+            ["R", "N", "B", "Q", "K", "B", "N", "R"]
+        ];
+
+        const pieceSymbols = {
+            "r": "♜", "n": "♞", "b": "♝", "q": "♛", "k": "♚", "p": "♟",
+            "R": "♖", "N": "♘", "B": "♗", "Q": "♕", "K": "♔", "P": "♙"
+        };
+
+        const chessboard = document.getElementById('chessboard');
+        let selectedPiece = null;
+
+        // Initialize the board
+        function initializeBoard() {
+            initialBoardSetup.forEach((row, rowIndex) => {
+                row.forEach((piece, colIndex) => {
+                    if (piece) {
+                        const square = document.getElementById(`square-${rowIndex}-${colIndex}`);
+                        square.innerHTML = `<span class="chess-piece" data-piece="${piece}">${pieceSymbols[piece]}</span>`;
+                        square.addEventListener('click', () => handleSquareClick(rowIndex, colIndex, piece));
+                    }
+                });
+            });
+        }
+
+        function handleSquareClick(row, col, piece) {
+            const square = document.getElementById(`square-${row}-${col}`);
+            if (selectedPiece) {
+                const selectedSquare = document.getElementById(`square-${selectedPiece.row}-${selectedPiece.col}`);
+                selectedSquare.innerHTML = '';
+                square.innerHTML = `<span class="chess-piece" data-piece="${selectedPiece.piece}">${pieceSymbols[selectedPiece.piece]}</span>`;
+                selectedPiece = null;
+            } else {
+                selectedPiece = { row, col, piece };
+            }
+        }
+
+        initializeBoard();
+    </script>
 </body>
 </html>
