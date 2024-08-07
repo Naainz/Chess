@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+---
+import { useState } from 'preact/hooks';
+---
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +9,6 @@
     <title>Responsive Chessboard with Pieces</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-
         .legal-move {
             width: 50%;
             height: 50%;
@@ -17,7 +19,6 @@
             left: 25%;
             pointer-events: none; /* Ensure the marker does not interfere with click events */
         }
-
         body {
             display: flex;
             justify-content: center;
@@ -79,23 +80,23 @@
     <div class="chessboard-container">
         <div class="chessboard" id="chessboard">
             <!-- Manually placing each piece -->
-            <div class="square white" id="square-0-0" onclick="handleSquareClick(0, 0, 'r')"><i class="fa-solid fa-chess-rook chess-piece chess-piece-black" data-piece="r"></i></div>
-            <div class="square black" id="square-0-1" onclick="handleSquareClick(0, 1, 'n')"><i class="fa-solid fa-chess-knight chess-piece chess-piece-black" data-piece="n"></i></div>
-            <div class="square white" id="square-0-2" onclick="handleSquareClick(0, 2, 'b')"><i class="fa-solid fa-chess-bishop chess-piece chess-piece-black" data-piece="b"></i></div>
-            <div class="square black" id="square-0-3" onclick="handleSquareClick(0, 3, 'q')"><i class="fa-solid fa-chess-queen chess-piece chess-piece-black" data-piece="q"></i></div>
-            <div class="square white" id="square-0-4" onclick="handleSquareClick(0, 4, 'k')"><i class="fa-solid fa-chess-king chess-piece chess-piece-black" data-piece="k"></i></div>
-            <div class="square black" id="square-0-5" onclick="handleSquareClick(0, 5, 'b')"><i class="fa-solid fa-chess-bishop chess-piece chess-piece-black" data-piece="b"></i></div>
-            <div class="square white" id="square-0-6" onclick="handleSquareClick(0, 6, 'n')"><i class="fa-solid fa-chess-knight chess-piece chess-piece-black" data-piece="n"></i></div>
-            <div class="square black" id="square-0-7" onclick="handleSquareClick(0, 7, 'r')"><i class="fa-solid fa-chess-rook chess-piece chess-piece-black" data-piece="r"></i></div>
+            <div class="square white" id="square-0-0" onClick={() => handleSquareClick(0, 0, 'r')}><i class="fa-solid fa-chess-rook chess-piece chess-piece-black" data-piece="r"></i></div>
+            <div class="square black" id="square-0-1" onClick={() => handleSquareClick(0, 1, 'n')}><i class="fa-solid fa-chess-knight chess-piece chess-piece-black" data-piece="n"></i></div>
+            <div class="square white" id="square-0-2" onClick={() => handleSquareClick(0, 2, 'b')}><i class="fa-solid fa-chess-bishop chess-piece chess-piece-black" data-piece="b"></i></div>
+            <div class="square black" id="square-0-3" onClick={() => handleSquareClick(0, 3, 'q')}><i class="fa-solid fa-chess-queen chess-piece chess-piece-black" data-piece="q"></i></div>
+            <div class="square white" id="square-0-4" onClick={() => handleSquareClick(0, 4, 'k')}><i class="fa-solid fa-chess-king chess-piece chess-piece-black" data-piece="k"></i></div>
+            <div class="square black" id="square-0-5" onClick={() => handleSquareClick(0, 5, 'b')}><i class="fa-solid fa-chess-bishop chess-piece chess-piece-black" data-piece="b"></i></div>
+            <div class="square white" id="square-0-6" onClick={() => handleSquareClick(0, 6, 'n')}><i class="fa-solid fa-chess-knight chess-piece chess-piece-black" data-piece="n"></i></div>
+            <div class="square black" id="square-0-7" onClick={() => handleSquareClick(0, 7, 'r')}><i class="fa-solid fa-chess-rook chess-piece chess-piece-black" data-piece="r"></i></div>
 
-            <div class="square black" id="square-1-0" onclick="handleSquareClick(1, 0, 'p')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
-            <div class="square white" id="square-1-1" onclick="handleSquareClick(1, 1, 'p')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
-            <div class="square black" id="square-1-2" onclick="handleSquareClick(1, 2, 'p')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
-            <div class="square white" id="square-1-3" onclick="handleSquareClick(1, 3, 'p')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
-            <div class="square black" id="square-1-4" onclick="handleSquareClick(1, 4, 'p')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
-            <div class="square white" id="square-1-5" onclick="handleSquareClick(1, 5, 'p')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
-            <div class="square black" id="square-1-6" onclick="handleSquareClick(1, 6, 'p')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
-            <div class="square white" id="square-1-7" onclick="handleSquareClick(1, 7, 'p')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
+            <div class="square black" id="square-1-0" onClick={() => handleSquareClick(1, 0, 'p')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
+            <div class="square white" id="square-1-1" onClick={() => handleSquareClick(1, 1, 'p')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
+            <div class="square black" id="square-1-2" onClick={() => handleSquareClick(1, 2, 'p')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
+            <div class="square white" id="square-1-3" onClick={() => handleSquareClick(1, 3, 'p')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
+            <div class="square black" id="square-1-4" onClick={() => handleSquareClick(1, 4, 'p')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
+            <div class="square white" id="square-1-5" onClick={() => handleSquareClick(1, 5, 'p')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
+            <div class="square black" id="square-1-6" onClick={() => handleSquareClick(1, 6, 'p')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
+            <div class="square white" id="square-1-7" onClick={() => handleSquareClick(1, 7, 'p')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-black" data-piece="p"></i></div>
 
             <div class="square white" id="square-2-0"></div>
             <div class="square black" id="square-2-1"></div>
@@ -133,23 +134,23 @@
             <div class="square black" id="square-5-6"></div>
             <div class="square white" id="square-5-7"></div>
 
-            <div class="square white" id="square-6-0" onclick="handleSquareClick(6, 0, 'P')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
-            <div class="square black" id="square-6-1" onclick="handleSquareClick(6, 1, 'P')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
-            <div class="square white" id="square-6-2" onclick="handleSquareClick(6, 2, 'P')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
-            <div class="square black" id="square-6-3" onclick="handleSquareClick(6, 3, 'P')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
-            <div class="square white" id="square-6-4" onclick="handleSquareClick(6, 4, 'P')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
-            <div class="square black" id="square-6-5" onclick="handleSquareClick(6, 5, 'P')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
-            <div class="square white" id="square-6-6" onclick="handleSquareClick(6, 6, 'P')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
-            <div class="square black" id="square-6-7" onclick="handleSquareClick(6, 7, 'P')"><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
+            <div class="square white" id="square-6-0" onClick={() => handleSquareClick(6, 0, 'P')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
+            <div class="square black" id="square-6-1" onClick={() => handleSquareClick(6, 1, 'P')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
+            <div class="square white" id="square-6-2" onClick={() => handleSquareClick(6, 2, 'P')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
+            <div class="square black" id="square-6-3" onClick={() => handleSquareClick(6, 3, 'P')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
+            <div class="square white" id="square-6-4" onClick={() => handleSquareClick(6, 4, 'P')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
+            <div class="square black" id="square-6-5" onClick={() => handleSquareClick(6, 5, 'P')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
+            <div class="square white" id="square-6-6" onClick={() => handleSquareClick(6, 6, 'P')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
+            <div class="square black" id="square-6-7" onClick={() => handleSquareClick(6, 7, 'P')}><i class="fa-solid fa-chess-pawn chess-piece chess-piece-white" data-piece="P"></i></div>
 
-            <div class="square black" id="square-7-0" onclick="handleSquareClick(7, 0, 'R')"><i class="fa-solid fa-chess-rook chess-piece chess-piece-white" data-piece="R"></i></div>
-            <div class="square white" id="square-7-1" onclick="handleSquareClick(7, 1, 'N')"><i class="fa-solid fa-chess-knight chess-piece chess-piece-white" data-piece="N"></i></div>
-            <div class="square black" id="square-7-2" onclick="handleSquareClick(7, 2, 'B')"><i class="fa-solid fa-chess-bishop chess-piece chess-piece-white" data-piece="B"></i></div>
-            <div class="square white" id="square-7-3" onclick="handleSquareClick(7, 3, 'Q')"><i class="fa-solid fa-chess-queen chess-piece chess-piece-white" data-piece="Q"></i></div>
-            <div class="square black" id="square-7-4" onclick="handleSquareClick(7, 4, 'K')"><i class="fa-solid fa-chess-king chess-piece chess-piece-white" data-piece="K"></i></div>
-            <div class="square white" id="square-7-5" onclick="handleSquareClick(7, 5, 'B')"><i class="fa-solid fa-chess-bishop chess-piece chess-piece-white" data-piece="B"></i></div>
-            <div class="square black" id="square-7-6" onclick="handleSquareClick(7, 6, 'N')"><i class="fa-solid fa-chess-knight chess-piece chess-piece-white" data-piece="N"></i></div>
-            <div class="square white" id="square-7-7" onclick="handleSquareClick(7, 7, 'R')"><i class="fa-solid fa-chess-rook chess-piece chess-piece-white" data-piece="R"></i></div>
+            <div class="square black" id="square-7-0" onClick={() => handleSquareClick(7, 0, 'R')}><i class="fa-solid fa-chess-rook chess-piece chess-piece-white" data-piece="R"></i></div>
+            <div class="square white" id="square-7-1" onClick={() => handleSquareClick(7, 1, 'N')}><i class="fa-solid fa-chess-knight chess-piece chess-piece-white" data-piece="N"></i></div>
+            <div class="square black" id="square-7-2" onClick={() => handleSquareClick(7, 2, 'B')}><i class="fa-solid fa-chess-bishop chess-piece chess-piece-white" data-piece="B"></i></div>
+            <div class="square white" id="square-7-3" onClick={() => handleSquareClick(7, 3, 'Q')}><i class="fa-solid fa-chess-queen chess-piece chess-piece-white" data-piece="Q"></i></div>
+            <div class="square black" id="square-7-4" onClick={() => handleSquareClick(7, 4, 'K')}><i class="fa-solid fa-chess-king chess-piece chess-piece-white" data-piece="K"></i></div>
+            <div class="square white" id="square-7-5" onClick={() => handleSquareClick(7, 5, 'B')}><i class="fa-solid fa-chess-bishop chess-piece chess-piece-white" data-piece="B"></i></div>
+            <div class="square black" id="square-7-6" onClick={() => handleSquareClick(7, 6, 'N')}><i class="fa-solid fa-chess-knight chess-piece chess-piece-white" data-piece="N"></i></div>
+            <div class="square white" id="square-7-7" onClick={() => handleSquareClick(7, 7, 'R')}><i class="fa-solid fa-chess-rook chess-piece chess-piece-white" data-piece="R"></i></div>
         </div>
     </div>
     <script>
