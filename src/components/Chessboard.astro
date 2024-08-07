@@ -156,49 +156,15 @@ import { useState } from 'preact/hooks';
     <script>
         let selectedPiece = null;
 
-        function getLegalMoves(piece, row, col) {
-            let moves = [];
-            switch (piece.toLowerCase()) {
-                case 'p':
-                    if (piece === 'P') {
-                        if (row > 0) moves.push([row - 1, col]);
-                        if (row === 6) moves.push([row - 2, col]);
-                    } else {
-                        if (row < 7) moves.push([row + 1, col]);
-                        if (row === 1) moves.push([row + 2, col]);
-                    }
-                    break;
-                case 'r':
-                    for (let i = 1; i < 8; i++) {
-                        moves.push([row + i, col], [row - i, col], [row, col + i], [row, col - i]);
-                    }
-                    break;
-                case 'n':
-                    moves.push([row + 2, col + 1], [row + 2, col - 1], [row - 2, col + 1], [row - 2, col - 1],
-                        [row + 1, col + 2], [row + 1, col - 2], [row - 1, col + 2], [row - 1, col - 2]);
-                    break;
-                case 'b':
-                    for (let i = 1; i < 8; i++) {
-                        moves.push([row + i, col + i], [row + i, col - i], [row - i, col + i], [row - i, col - i]);
-                    }
-                    break;
-                case 'q':
-                    for (let i = 1; i < 8; i++) {
-                        moves.push([row + i, col], [row - i, col], [row, col + i], [row, col - i]);
-                        moves.push([row + i, col + i], [row + i, col - i], [row - i, col + i], [row - i, col - i]);
-                    }
-                    break;
-                case 'k':
-                    moves.push([row + 1, col], [row - 1, col], [row, col + 1], [row, col - 1],
-                        [row + 1, col + 1], [row + 1, col - 1], [row - 1, col + 1], [row - 1, col - 1]);
-                    break;
-            }
-            return moves.filter(move => move[0] >= 0 && move[0] < 8 && move[1] >= 0 && move[1] < 8);
+        async function getLegalMoves(piece, row, col) {
+            const response = await fetch(`/api/getLegalMoves.json?piece=${piece}&row=${row}&col=${col}`);
+            const data = await response.json();
+            return data.moves;
         }
 
-        function highlightLegalMoves(piece, row, col) {
+        async function highlightLegalMoves(piece, row, col) {
             clearHighlights();
-            const moves = getLegalMoves(piece, row, col);
+            const moves = await getLegalMoves(piece, row, col);
             moves.forEach(([moveRow, moveCol]) => {
                 const square = document.getElementById(`square-${moveRow}-${moveCol}`);
                 const indicator = document.createElement('div');
