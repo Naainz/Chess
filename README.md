@@ -10,6 +10,7 @@ Note, this is not a full chess game, but a chessboard that **can** be used to pl
 - [x] Highlights legal moves
 - [x] Shows pieces with FAS icons
 
+
 ## Get started
 
 1. Clone and install the prerequisites
