@@ -11,7 +11,8 @@ Note, this is not a full chess game, but a chessboard that **can** be used to pl
 - [x] Shows pieces with FAS icons
 
 
-## Get started
+
+## Getting Started
 
 1. Clone and install the prerequisites
 
