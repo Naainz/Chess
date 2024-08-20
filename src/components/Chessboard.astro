@@ -17,7 +17,7 @@ import { useState } from 'preact/hooks';
             position: absolute;
             top: 25%;
             left: 25%;
-            pointer-events: none; /* Ensure the marker does not interfere with click events */
+            pointer-events: none; 
         }
         body {
             display: flex;
@@ -61,12 +61,12 @@ import { useState } from 'preact/hooks';
         }
         .chess-piece {
             cursor: pointer;
-            background: transparent; /* Ensure the background is transparent */
+            background: transparent; 
             text-shadow: 
                 -1px -1px 0 #000,  
                  1px -1px 0 #000,
                 -1px  1px 0 #000,
-                 1px  1px 0 #000; /* 1px black stroke */
+                 1px  1px 0 #000; 
         }
         .chess-piece-white {
             color: white;
