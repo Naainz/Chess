@@ -1,6 +1,6 @@
 # Chessboard
 
-Note, this is not a full chess game, but a chessboard that **can** be used to play chess.
+Note, this is not a full chess game, but a chessboard that **can** (in future) be used to play chess.
 
 ![Chessboard](./public/sc.png)
 
